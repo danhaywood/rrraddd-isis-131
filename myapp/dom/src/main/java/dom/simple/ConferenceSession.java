@@ -162,6 +162,28 @@ public class ConferenceSession implements Comparable<ConferenceSession> {
     
     
     // //////////////////////////////////////
+    // addTag (action)
+    // //////////////////////////////////////
+    
+    @MemberOrder(sequence = "1")
+    public ConferenceSession addTag(final Tag tag) {
+        getTags().add(tag);
+        return this;
+    }
+
+    
+    // //////////////////////////////////////
+    // removeTag (action)
+    // //////////////////////////////////////
+    
+    @MemberOrder(sequence = "2")
+    public ConferenceSession removeTag(final Tag tag) {
+        getTags().remove(tag);
+        return this;
+    }
+
+    
+    // //////////////////////////////////////
     // compareTo
     // //////////////////////////////////////
 

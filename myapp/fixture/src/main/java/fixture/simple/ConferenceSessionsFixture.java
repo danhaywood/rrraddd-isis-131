@@ -88,8 +88,23 @@ public class ConferenceSessionsFixture extends AbstractFixture {
 
     private ConferenceSession create(final String name, final ConferenceSession.Type type) {
         ConferenceSession session = conferenceSessions.create(name, type);
+        for (Tag tag : random(tags.listAll(), 3)) {
+            session.addTag(tag);
+        }
         session.setDate(clockService.now().plusDays((int)(Math.random()*5)));
         return session;
+    }
+
+    private List<Tag> random(List<Tag> tags, int num) {
+        List<Tag> availableTags = Lists.newArrayList(tags);
+        List<Tag> selectedTags = Lists.newArrayList();
+        while(selectedTags.size()<num) {
+            int selected = (int)(availableTags.size() * Math.random());
+            try {
+                selectedTags.add(availableTags.remove(selected));
+            } catch(Exception ex) {}
+        }
+        return selectedTags;
     }
 
     private Speaker createSpeaker(final String givenName, final String familyName) {
