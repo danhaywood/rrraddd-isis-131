@@ -19,14 +19,21 @@
 
 package fixture.simple;
 
+import java.util.List;
+
 import org.apache.isis.applib.fixtures.AbstractFixture;
 import org.apache.isis.objectstore.jdo.applib.service.support.IsisJdoSupport;
 
 import services.ClockService;
+
+import com.google.common.collect.Lists;
+
 import dom.simple.ConferenceSession;
 import dom.simple.ConferenceSessions;
 import dom.simple.Speaker;
 import dom.simple.Speakers;
+import dom.simple.Tag;
+import dom.simple.Tags;
 
 public class ConferenceSessionsFixture extends AbstractFixture {
 
@@ -43,6 +50,24 @@ public class ConferenceSessionsFixture extends AbstractFixture {
     }
 
     private void installObjects() {
+        createTag("UX");
+        createTag("Mobile");
+        createTag("Java");
+        createTag("Agile");
+        createTag(".NET");
+        createTag("Test");
+        createTag("Mastery");
+        createTag("Web");
+        createTag("Architecture");
+        createTag("Dev Ops");
+        createTag("Cloud");
+        createTag("Languages");
+        createTag("Tools");
+        createTag("Team");
+        createTag("Database");
+        createTag("Javascript");
+        createTag("Keynote");
+        
         createSpeaker("Dan", "Haywood");
         createSpeaker("Misko", "Hevery");
         createSpeaker("Cyrille", "Martraire");
@@ -70,6 +95,11 @@ public class ConferenceSessionsFixture extends AbstractFixture {
     private Speaker createSpeaker(final String givenName, final String familyName) {
         return speakers.create(givenName, familyName);
     }
+    
+    private Tag createTag(final String name) {
+        return tags.create(name);
+    }
+
 
     // //////////////////////////////////////
 
@@ -96,6 +126,11 @@ public class ConferenceSessionsFixture extends AbstractFixture {
     private Speakers speakers;
     public final void injectSpeakers(final Speakers speakers) {
         this.speakers = speakers;
+    }
+
+    private Tags tags;
+    public final void injectTags(final Tags tags) {
+        this.tags = tags;
     }
 
 }
