@@ -143,5 +143,10 @@
             <scope>test</scope>
         </dependency>
 
+        <dependency>
+            <groupId>com.danhaywood.isis.wicket</groupId>
+            <artifactId>danhaywood-isis-wicket-fullcalendar2-applib</artifactId>
+        </dependency>
+
 	</dependencies>
 </project>

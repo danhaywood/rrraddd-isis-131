@@ -294,6 +294,11 @@
         </dependency>
          -->
          
+        <dependency>
+           <groupId>com.danhaywood.isis.wicket</groupId>
+            <artifactId>danhaywood-isis-wicket-fullcalendar2-ui</artifactId>
+        </dependency>
+         
     </dependencies>
 
 </project>
