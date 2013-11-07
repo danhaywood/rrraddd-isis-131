@@ -58,6 +58,25 @@ public class ConferenceSession implements Comparable<ConferenceSession> {
 
     
     // //////////////////////////////////////
+    // date (property)
+    // //////////////////////////////////////
+
+    private LocalDate date;
+
+    @javax.jdo.annotations.Persistent
+    @javax.jdo.annotations.Column(allowsNull = "true")
+    @MemberOrder(sequence = "1")
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(final LocalDate date) {
+        this.date = date;
+    }
+
+
+    
+    // //////////////////////////////////////
     // compareTo
     // //////////////////////////////////////
 

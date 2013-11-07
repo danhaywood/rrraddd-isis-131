@@ -54,6 +54,7 @@ public class ConferenceSessionsFixture extends AbstractFixture {
 
     private ConferenceSession create(final String name) {
         ConferenceSession session = conferenceSessions.create(name);
+        session.setDate(clockService.now().plusDays((int)(Math.random()*5)));
         return session;
     }
 
@@ -71,6 +72,13 @@ public class ConferenceSessionsFixture extends AbstractFixture {
     private IsisJdoSupport isisJdoSupport;
     public void injectIsisJdoSupport(IsisJdoSupport isisJdoSupport) {
         this.isisJdoSupport = isisJdoSupport;
+    }
+
+    
+    private ClockService clockService;
+
+    public final void injectClockService(final ClockService clockService) {
+        this.clockService = clockService;
     }
 
 }
