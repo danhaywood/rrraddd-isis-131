@@ -23,9 +23,11 @@ import javax.jdo.annotations.VersionStrategy;
 
 import org.apache.isis.applib.DomainObjectContainer;
 import org.apache.isis.applib.annotation.Bookmarkable;
+import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.ObjectType;
 import org.apache.isis.applib.annotation.Title;
 import org.apache.isis.applib.util.ObjectContracts;
+import org.joda.time.LocalDate;
 
 @javax.jdo.annotations.PersistenceCapable(identityType=IdentityType.DATASTORE)
 @javax.jdo.annotations.DatastoreIdentity(
@@ -39,29 +41,29 @@ import org.apache.isis.applib.util.ObjectContracts;
 public class ConferenceSession implements Comparable<ConferenceSession> {
 
     // //////////////////////////////////////
-    // Name (property)
+    // sessionTitle (property)
     // //////////////////////////////////////
     
-    private String name;
+    private String sessionTitle;
 
     @javax.jdo.annotations.Column(allowsNull="false")
     @Title
-    public String getName() {
-        return name;
+    public String getSessionTitle() {
+        return sessionTitle;
     }
 
-    public void setName(final String name) {
-        this.name = name;
+    public void setSessionTitle(final String name) {
+        this.sessionTitle = name;
     }
 
-
+    
     // //////////////////////////////////////
     // compareTo
     // //////////////////////////////////////
 
     @Override
     public int compareTo(ConferenceSession other) {
-        return ObjectContracts.compare(this, other, "name");
+        return ObjectContracts.compare(this, other, "sessionTitle");
     }
 
     

@@ -63,7 +63,7 @@ public class ConferenceSessions extends AbstractFactoryAndRepository {
     public ConferenceSession create(
             final @Named("Name") String name) {
         final ConferenceSession obj = newTransientInstance(ConferenceSession.class);
-        obj.setName(name);
+        obj.setSessionTitle(name);
         persistIfNotAlready(obj);
         return obj;
     }

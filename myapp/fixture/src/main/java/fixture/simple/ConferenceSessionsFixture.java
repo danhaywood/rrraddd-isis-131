@@ -19,11 +19,12 @@
 
 package fixture.simple;
 
-import dom.simple.ConferenceSession;
-import dom.simple.ConferenceSessions;
-
 import org.apache.isis.applib.fixtures.AbstractFixture;
 import org.apache.isis.objectstore.jdo.applib.service.support.IsisJdoSupport;
+
+import services.ClockService;
+import dom.simple.ConferenceSession;
+import dom.simple.ConferenceSessions;
 
 public class ConferenceSessionsFixture extends AbstractFixture {
 
@@ -40,26 +41,30 @@ public class ConferenceSessionsFixture extends AbstractFixture {
 
     private void installObjects() {
 
-        create("Foo");
-        create("Bar");
-        create("Baz");
+        create("RRRADDD! Apache Isis");
+        create("Best practices for AngularJS");
+        create("Refactor your specs!");
+        create("Why Kotlin?");
+        create("Introduction to the Play Framework");
+        create("Object Oriented Design in the Wild");
     }
 
 
     // //////////////////////////////////////
 
     private ConferenceSession create(final String name) {
-        return simpleObjects.create(name);
+        ConferenceSession session = conferenceSessions.create(name);
+        return session;
     }
 
 
     // //////////////////////////////////////
 
 
-    private ConferenceSessions simpleObjects;
+    private ConferenceSessions conferenceSessions;
 
-    public void injectSimpleObjects(final ConferenceSessions simpleObjects) {
-        this.simpleObjects = simpleObjects;
+    public void injectConferenceSessions(final ConferenceSessions conferenceSessions) {
+        this.conferenceSessions = conferenceSessions;
     }
 
     
