@@ -50,6 +50,7 @@ public class ConferenceSession implements Comparable<ConferenceSession> {
 
     @javax.jdo.annotations.Column(allowsNull="false")
     @Title
+    @MemberOrder(sequence="1")
     public String getSessionTitle() {
         return sessionTitle;
     }
@@ -67,7 +68,8 @@ public class ConferenceSession implements Comparable<ConferenceSession> {
 
     @javax.jdo.annotations.Persistent
     @javax.jdo.annotations.Column(allowsNull = "true")
-    @MemberOrder(sequence = "1")
+    @Hidden(where=Where.ALL_TABLES)
+    @MemberOrder(name="Scheduling", sequence = "3")
     public LocalDate getDate() {
         return date;
     }
@@ -89,7 +91,7 @@ public class ConferenceSession implements Comparable<ConferenceSession> {
     private Type Type;
 
     @javax.jdo.annotations.Column(allowsNull = "false")
-    @MemberOrder(sequence = "1")
+    @MemberOrder(sequence = "2")
     public Type getType() {
         return Type;
     }
