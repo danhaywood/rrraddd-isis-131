@@ -24,9 +24,12 @@ import org.apache.isis.applib.AbstractFactoryAndRepository;
 import org.apache.isis.applib.annotation.ActionSemantics;
 import org.apache.isis.applib.annotation.ActionSemantics.Of;
 import org.apache.isis.applib.annotation.Bookmarkable;
+import org.apache.isis.applib.annotation.Hidden;
 import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.Named;
+import org.apache.isis.applib.annotation.NotInServiceMenu;
 import org.apache.isis.applib.annotation.Prototype;
+import org.apache.isis.applib.query.QueryDefault;
 
 public class ConferenceSessions extends AbstractFactoryAndRepository {
 
@@ -71,6 +74,17 @@ public class ConferenceSessions extends AbstractFactoryAndRepository {
         return obj;
     }
 
+
+    // //////////////////////////////////////
+    // Contributions
+    // //////////////////////////////////////
+
+    // @NotContributed
+    @NotInServiceMenu
+    public List<ConferenceSession> findByTag(Tag tag) {
+        return allMatches(new QueryDefault<ConferenceSession>(
+                ConferenceSession.class, "findByTag", "tag", tag));
+    }
 
     // //////////////////////////////////////
     // Prototype actions

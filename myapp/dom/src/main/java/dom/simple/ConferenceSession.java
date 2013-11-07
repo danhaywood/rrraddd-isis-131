@@ -48,6 +48,13 @@ import com.google.common.collect.Lists;
 @javax.jdo.annotations.Version(
         strategy=VersionStrategy.VERSION_NUMBER, 
         column="version")
+@javax.jdo.annotations.Queries({
+    @javax.jdo.annotations.Query(
+            name="findByTag", language="JDOQL",
+            value="SELECT "
+                    + "FROM dom.simple.ConferenceSession "
+                    + "WHERE tags.contains(:tag)")
+})
 @ObjectType("SESSION")
 @Bookmarkable
 public class ConferenceSession implements Comparable<ConferenceSession> {
