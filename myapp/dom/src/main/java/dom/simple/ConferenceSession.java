@@ -32,6 +32,7 @@ import org.apache.isis.applib.annotation.Disabled;
 import org.apache.isis.applib.annotation.Hidden;
 import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.ObjectType;
+import org.apache.isis.applib.annotation.RegEx;
 import org.apache.isis.applib.annotation.Render;
 import org.apache.isis.applib.annotation.Where;
 import org.apache.isis.applib.util.ObjectContracts;
@@ -71,7 +72,8 @@ public class ConferenceSession implements Comparable<ConferenceSession> {
     
     private String sessionTitle;
 
-    @javax.jdo.annotations.Column(allowsNull="false")
+    @javax.jdo.annotations.Column(allowsNull="false",length=40)
+    @RegEx(validation="[^%]+")
     @MemberOrder(sequence="1")
     public String getSessionTitle() {
         return sessionTitle;
@@ -172,6 +174,10 @@ public class ConferenceSession implements Comparable<ConferenceSession> {
     public ConferenceSession addTag(final Tag tag) {
         getTags().add(tag);
         return this;
+    }
+
+    public String disableAddTag(Tag tag) {
+        return getTags().size() >= 4? "Cannot add more than 4 tags": null;
     }
 
     public Collection<Tag> choices0AddTag() {
