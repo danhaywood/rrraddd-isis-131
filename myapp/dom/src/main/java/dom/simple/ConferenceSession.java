@@ -33,6 +33,7 @@ import org.apache.isis.applib.annotation.Disabled;
 import org.apache.isis.applib.annotation.Hidden;
 import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.ObjectType;
+import org.apache.isis.applib.annotation.Programmatic;
 import org.apache.isis.applib.annotation.RegEx;
 import org.apache.isis.applib.annotation.Render;
 import org.apache.isis.applib.annotation.Where;
@@ -40,6 +41,7 @@ import org.apache.isis.applib.util.ObjectContracts;
 import org.apache.isis.applib.util.TitleBuffer;
 import org.joda.time.LocalDate;
 
+import com.danhaywood.isis.wicket.fullcalendar2.applib.CalendarEvent;
 import com.google.common.collect.Lists;
 
 @javax.jdo.annotations.PersistenceCapable(identityType=IdentityType.DATASTORE)
@@ -58,7 +60,8 @@ import com.google.common.collect.Lists;
 })
 @ObjectType("SESSION")
 @Bookmarkable
-public class ConferenceSession implements Comparable<ConferenceSession> {
+public class ConferenceSession implements Comparable<ConferenceSession> 
+        , com.danhaywood.isis.wicket.fullcalendar2.applib.CalendarEventable {
 
     public String title() {
         final TitleBuffer buf = new TitleBuffer();
@@ -209,6 +212,27 @@ public class ConferenceSession implements Comparable<ConferenceSession> {
     public Collection<Tag> choices0RemoveTag() {
         return getTags();
     }
+    
+    // //////////////////////////////////////
+    // CalendarEventable impl
+    // //////////////////////////////////////
+
+    @Programmatic
+    @Override
+    public String getCalendarName() {
+        return "date";
+    }
+
+    @Programmatic
+    @Override
+    public CalendarEvent toCalendarEvent() {
+        return new CalendarEvent(
+                getDate().toDateTimeAtStartOfDay(), 
+                "date", 
+                container.titleOf(this));
+    }
+
+    
     
     // //////////////////////////////////////
     // compareTo
