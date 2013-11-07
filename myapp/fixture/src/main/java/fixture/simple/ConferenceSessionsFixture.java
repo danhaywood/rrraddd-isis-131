@@ -92,7 +92,18 @@ public class ConferenceSessionsFixture extends AbstractFixture {
             session.addTag(tag);
         }
         session.setDate(clockService.now().plusDays((int)(Math.random()*5)));
+        session.setSpeaker(randomSpeaker());
         return session;
+    }
+
+    private Speaker randomSpeaker() {
+        List<Speaker> all = speakers.listAll();
+        while(true) {
+            try {
+                int selected = (int)(all.size() * Math.random());
+                return all.get(selected);
+            } catch(Exception ex){}
+        }
     }
 
     private List<Tag> random(List<Tag> tags, int num) {

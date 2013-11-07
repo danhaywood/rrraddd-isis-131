@@ -24,13 +24,18 @@ import org.apache.isis.applib.AbstractFactoryAndRepository;
 import org.apache.isis.applib.annotation.ActionSemantics;
 import org.apache.isis.applib.annotation.ActionSemantics.Of;
 import org.apache.isis.applib.annotation.Bookmarkable;
-import org.apache.isis.applib.annotation.Hidden;
 import org.apache.isis.applib.annotation.HomePage;
 import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.Named;
 import org.apache.isis.applib.annotation.NotInServiceMenu;
 import org.apache.isis.applib.annotation.Prototype;
 import org.apache.isis.applib.query.QueryDefault;
+import org.apache.isis.applib.services.bookmark.Bookmark;
+import org.apache.isis.applib.services.bookmark.BookmarkService;
+
+import com.google.common.base.Function;
+import com.google.common.collect.Iterables;
+import com.google.common.collect.Lists;
 
 public class ConferenceSessions extends AbstractFactoryAndRepository {
 
@@ -51,7 +56,6 @@ public class ConferenceSessions extends AbstractFactoryAndRepository {
     // List (action)
     // //////////////////////////////////////
     
-    @HomePage
     @Bookmarkable
     @ActionSemantics(Of.SAFE)
     @MemberOrder(sequence = "1")
@@ -88,6 +92,8 @@ public class ConferenceSessions extends AbstractFactoryAndRepository {
                 ConferenceSession.class, "findByTag", "tag", tag));
     }
 
+
+
     // //////////////////////////////////////
     // Prototype actions
     // //////////////////////////////////////
@@ -99,5 +105,6 @@ public class ConferenceSessions extends AbstractFactoryAndRepository {
     public ConferenceSession firstOne() {
         return listAll().get(0);
     }
+
 
 }

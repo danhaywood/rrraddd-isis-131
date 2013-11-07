@@ -7,9 +7,16 @@ import org.apache.isis.applib.annotation.ActionSemantics;
 import org.apache.isis.applib.annotation.ActionSemantics.Of;
 import org.apache.isis.applib.annotation.Bookmarkable;
 import org.apache.isis.applib.annotation.Hidden;
+import org.apache.isis.applib.annotation.HomePage;
 import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.Named;
 import org.apache.isis.applib.query.QueryDefault;
+import org.apache.isis.applib.services.bookmark.Bookmark;
+import org.apache.isis.applib.services.bookmark.BookmarkService;
+
+import com.google.common.base.Function;
+import com.google.common.collect.Iterables;
+import com.google.common.collect.Lists;
 
 public class Speakers extends AbstractFactoryAndRepository {
 
@@ -46,6 +53,38 @@ public class Speakers extends AbstractFactoryAndRepository {
                 new QueryDefault<Speaker>(Speaker.class, 
                         "findByGivenOrFamilyName", 
                         "givenOrFamilyName", ".*"+search+".*"));
+    }
+
+    
+    // //////////////////////////////////////
+    // view models
+    // //////////////////////////////////////
+
+    @HomePage
+    @ActionSemantics(Of.SAFE)
+    public List<SpeakerViewModel> all() {
+        return Lists.newArrayList(Iterables.transform(listAll(), 
+            new Function<Speaker, SpeakerViewModel>() {
+                @Override
+                public SpeakerViewModel apply(Speaker input) {
+                    Bookmark bookmark = bookmarkService.bookmarkFor(input);
+                    return getContainer().newViewModelInstance(
+                            SpeakerViewModel.class, 
+                            SpeakerViewModel.encode(bookmark));
+                }
+            })
+        );
+    }
+
+
+    // //////////////////////////////////////
+    // Injected
+    // //////////////////////////////////////
+    
+    private BookmarkService bookmarkService;
+    
+    public final void injectBookmarkService(final BookmarkService bookmarkService) {
+        this.bookmarkService = bookmarkService;
     }
 
 }
