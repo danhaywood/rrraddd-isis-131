@@ -19,16 +19,19 @@
 package dom.simple;
 
 import java.util.List;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.VersionStrategy;
 
 import org.apache.isis.applib.DomainObjectContainer;
 import org.apache.isis.applib.annotation.Bookmarkable;
+import org.apache.isis.applib.annotation.Disabled;
 import org.apache.isis.applib.annotation.Hidden;
 import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.ObjectType;
-import org.apache.isis.applib.annotation.Title;
+import org.apache.isis.applib.annotation.Render;
 import org.apache.isis.applib.annotation.Where;
 import org.apache.isis.applib.util.ObjectContracts;
 import org.apache.isis.applib.util.TitleBuffer;
@@ -137,6 +140,27 @@ public class ConferenceSession implements Comparable<ConferenceSession> {
         return speakers.findByGivenOrFamilyName(search);
     }
 
+    
+    // //////////////////////////////////////
+    // tags (collection)
+    // //////////////////////////////////////
+
+    @javax.jdo.annotations.Join
+    @javax.jdo.annotations.Element(dependent = "false")
+    private SortedSet<Tag> tags = new TreeSet<Tag>();
+
+    @Render(Render.Type.EAGERLY)
+    @Disabled
+    @MemberOrder(sequence = "1")
+    public SortedSet<Tag> getTags() {
+        return tags;
+    }
+
+    public void setTags(final SortedSet<Tag> tags) {
+        this.tags = tags;
+    }
+    
+    
     // //////////////////////////////////////
     // compareTo
     // //////////////////////////////////////
