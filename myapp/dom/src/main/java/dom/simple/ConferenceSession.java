@@ -34,9 +34,9 @@ import org.apache.isis.applib.util.ObjectContracts;
 @javax.jdo.annotations.Version(
         strategy=VersionStrategy.VERSION_NUMBER, 
         column="version")
-@ObjectType("SIMPLE")
+@ObjectType("SESSION")
 @Bookmarkable
-public class SimpleObject implements Comparable<SimpleObject> {
+public class ConferenceSession implements Comparable<ConferenceSession> {
 
     // //////////////////////////////////////
     // Name (property)
@@ -60,7 +60,7 @@ public class SimpleObject implements Comparable<SimpleObject> {
     // //////////////////////////////////////
 
     @Override
-    public int compareTo(SimpleObject other) {
+    public int compareTo(ConferenceSession other) {
         return ObjectContracts.compare(this, other, "name");
     }
 

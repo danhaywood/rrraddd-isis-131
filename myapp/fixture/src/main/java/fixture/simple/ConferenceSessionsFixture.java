@@ -19,19 +19,19 @@
 
 package fixture.simple;
 
-import dom.simple.SimpleObject;
-import dom.simple.SimpleObjects;
+import dom.simple.ConferenceSession;
+import dom.simple.ConferenceSessions;
 
 import org.apache.isis.applib.fixtures.AbstractFixture;
 import org.apache.isis.objectstore.jdo.applib.service.support.IsisJdoSupport;
 
-public class SimpleObjectsFixture extends AbstractFixture {
+public class ConferenceSessionsFixture extends AbstractFixture {
 
     
     @Override
     public void install() {
 
-        isisJdoSupport.executeUpdate("delete from \"SimpleObject\"");
+        isisJdoSupport.executeUpdate("delete from \"ConferenceSession\"");
 
         installObjects();
         
@@ -48,7 +48,7 @@ public class SimpleObjectsFixture extends AbstractFixture {
 
     // //////////////////////////////////////
 
-    private SimpleObject create(final String name) {
+    private ConferenceSession create(final String name) {
         return simpleObjects.create(name);
     }
 
@@ -56,9 +56,9 @@ public class SimpleObjectsFixture extends AbstractFixture {
     // //////////////////////////////////////
 
 
-    private SimpleObjects simpleObjects;
+    private ConferenceSessions simpleObjects;
 
-    public void injectSimpleObjects(final SimpleObjects simpleObjects) {
+    public void injectSimpleObjects(final ConferenceSessions simpleObjects) {
         this.simpleObjects = simpleObjects;
     }
 

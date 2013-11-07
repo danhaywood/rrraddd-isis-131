@@ -27,7 +27,7 @@ import org.apache.isis.applib.annotation.Bookmarkable;
 import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.Named;
 
-public class SimpleObjects extends AbstractFactoryAndRepository {
+public class ConferenceSessions extends AbstractFactoryAndRepository {
 
     // //////////////////////////////////////
     // Identification in the UI
@@ -35,11 +35,11 @@ public class SimpleObjects extends AbstractFactoryAndRepository {
 
     @Override
     public String getId() {
-        return "simple";
+        return "conferenceSession";
     }
 
     public String iconName() {
-        return "SimpleObject";
+        return "ConferenceSession";
     }
 
     // //////////////////////////////////////
@@ -49,8 +49,8 @@ public class SimpleObjects extends AbstractFactoryAndRepository {
     @Bookmarkable
     @ActionSemantics(Of.SAFE)
     @MemberOrder(sequence = "1")
-    public List<SimpleObject> listAll() {
-        return allInstances(SimpleObject.class);
+    public List<ConferenceSession> listAll() {
+        return allInstances(ConferenceSession.class);
     }
 
 
@@ -60,9 +60,9 @@ public class SimpleObjects extends AbstractFactoryAndRepository {
     
     @Bookmarkable
     @MemberOrder(sequence = "2")
-    public SimpleObject create(
+    public ConferenceSession create(
             final @Named("Name") String name) {
-        final SimpleObject obj = newTransientInstance(SimpleObject.class);
+        final ConferenceSession obj = newTransientInstance(ConferenceSession.class);
         obj.setName(name);
         persistIfNotAlready(obj);
         return obj;

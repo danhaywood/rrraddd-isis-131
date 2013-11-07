@@ -20,9 +20,9 @@ package webapp.prototyping;
 
 import java.util.List;
 
-import dom.simple.SimpleObject;
-import dom.simple.SimpleObjects;
-import fixture.simple.SimpleObjectsFixture;
+import dom.simple.ConferenceSession;
+import dom.simple.ConferenceSessions;
+import fixture.simple.ConferenceSessionsFixture;
 
 import org.apache.isis.applib.AbstractService;
 import org.apache.isis.applib.annotation.Named;
@@ -38,7 +38,7 @@ public class SimpleObjectsFixturesService extends AbstractService {
     @Prototype
     public String installFixtures() {
         final FixturesInstallerDelegate installer = new FixturesInstallerDelegate().withOverride();
-        installer.addFixture(new SimpleObjectsFixture());
+        installer.addFixture(new ConferenceSessionsFixture());
         installer.installFixtures();
         return "Example fixtures installed";
     }
@@ -46,17 +46,17 @@ public class SimpleObjectsFixturesService extends AbstractService {
     // //////////////////////////////////////
 
     @Prototype
-    public SimpleObject installFixturesAndReturnFirst() {
+    public ConferenceSession installFixturesAndReturnFirst() {
         installFixtures();
-        List<SimpleObject> all = simpleObjects.listAll();
+        List<ConferenceSession> all = simpleObjects.listAll();
         return !all.isEmpty() ? all.get(0) : null;
     }
 
     
     // //////////////////////////////////////
 
-    private SimpleObjects simpleObjects;
-    public void injectSimpleObjects(SimpleObjects simpleObjects) {
+    private ConferenceSessions simpleObjects;
+    public void injectSimpleObjects(ConferenceSessions simpleObjects) {
         this.simpleObjects = simpleObjects;
     }
 
