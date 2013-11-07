@@ -17,6 +17,14 @@ import org.apache.isis.applib.util.ObjectContracts;
 @javax.jdo.annotations.Version(
         strategy=VersionStrategy.VERSION_NUMBER, 
         column="version")
+@javax.jdo.annotations.Queries({
+    @javax.jdo.annotations.Query(
+            name="findByGivenOrFamilyName", language="JDOQL",
+            value="SELECT "
+                    + "FROM dom.simple.Speaker "
+                    + "WHERE givenName.matches(:givenOrFamilyName) "
+                    + "   || familyName.matches(:givenOrFamilyName)")
+})
 @ObjectType("SPEAKER")
 @Bookmarkable
 public class Speaker implements Comparable<Speaker> {

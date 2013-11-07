@@ -6,8 +6,10 @@ import org.apache.isis.applib.AbstractFactoryAndRepository;
 import org.apache.isis.applib.annotation.ActionSemantics;
 import org.apache.isis.applib.annotation.ActionSemantics.Of;
 import org.apache.isis.applib.annotation.Bookmarkable;
+import org.apache.isis.applib.annotation.Hidden;
 import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.Named;
+import org.apache.isis.applib.query.QueryDefault;
 
 public class Speakers extends AbstractFactoryAndRepository {
 
@@ -37,4 +39,13 @@ public class Speakers extends AbstractFactoryAndRepository {
         getContainer().persistIfNotAlready(speaker);
         return speaker;
     }
+
+    @Hidden
+    public List<Speaker> findByGivenOrFamilyName(String search) {
+        return getContainer().allMatches(
+                new QueryDefault<Speaker>(Speaker.class, 
+                        "findByGivenOrFamilyName", 
+                        "givenOrFamilyName", ".*"+search+".*"));
+    }
+
 }

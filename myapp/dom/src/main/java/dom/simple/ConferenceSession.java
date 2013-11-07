@@ -18,6 +18,8 @@
  */
 package dom.simple;
 
+import java.util.List;
+
 import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.VersionStrategy;
 
@@ -117,7 +119,11 @@ public class ConferenceSession implements Comparable<ConferenceSession> {
         this.speaker = speaker;
     }
     
-     // //////////////////////////////////////
+    public List<Speaker> autoCompleteSpeaker(String search) {
+        return speakers.findByGivenOrFamilyName(search);
+    }
+
+    // //////////////////////////////////////
     // compareTo
     // //////////////////////////////////////
 
@@ -136,5 +142,11 @@ public class ConferenceSession implements Comparable<ConferenceSession> {
     public void injectDomainObjectContainer(final DomainObjectContainer container) {
         this.container = container;
     }
+
+    private Speakers speakers;
     
+    public final void injectSpeakers(final Speakers speakers) {
+        this.speakers = speakers;
+    }
+
 }
