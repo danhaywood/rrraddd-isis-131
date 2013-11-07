@@ -28,6 +28,7 @@ import javax.jdo.annotations.VersionStrategy;
 
 import org.apache.isis.applib.DomainObjectContainer;
 import org.apache.isis.applib.annotation.Bookmarkable;
+import org.apache.isis.applib.annotation.CssClass;
 import org.apache.isis.applib.annotation.Disabled;
 import org.apache.isis.applib.annotation.Hidden;
 import org.apache.isis.applib.annotation.MemberOrder;
@@ -177,6 +178,7 @@ public class ConferenceSession implements Comparable<ConferenceSession> {
     // addTag (action)
     // //////////////////////////////////////
     
+    @CssClass("x-highlight")
     @MemberOrder(sequence = "1")
     public ConferenceSession addTag(final Tag tag) {
         getTags().add(tag);
@@ -197,6 +199,7 @@ public class ConferenceSession implements Comparable<ConferenceSession> {
     // removeTag (action)
     // //////////////////////////////////////
     
+    @CssClass("x-caution")
     @MemberOrder(sequence = "2")
     public ConferenceSession removeTag(final Tag tag) {
         getTags().remove(tag);
