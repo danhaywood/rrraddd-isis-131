@@ -61,11 +61,12 @@ public class ConferenceSessions extends AbstractFactoryAndRepository {
     @Bookmarkable
     @MemberOrder(sequence = "2")
     public ConferenceSession create(
-            final @Named("Name") String name) {
+            final @Named("Name") String name,
+            final @Named("Type") ConferenceSession.Type type) {
         final ConferenceSession obj = newTransientInstance(ConferenceSession.class);
         obj.setSessionTitle(name);
+        obj.setType(type);
         persistIfNotAlready(obj);
         return obj;
     }
-
 }

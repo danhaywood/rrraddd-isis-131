@@ -40,20 +40,19 @@ public class ConferenceSessionsFixture extends AbstractFixture {
     }
 
     private void installObjects() {
-
-        create("RRRADDD! Apache Isis");
-        create("Best practices for AngularJS");
-        create("Refactor your specs!");
-        create("Why Kotlin?");
-        create("Introduction to the Play Framework");
-        create("Object Oriented Design in the Wild");
+        create("RRRADDD! Apache Isis", ConferenceSession.Type.SESSION);
+        create("Best practices for AngularJS", ConferenceSession.Type.SESSION);
+        create("Refactor your specs!", ConferenceSession.Type.SESSION);
+        create("Why Kotlin?", ConferenceSession.Type.OTHER);
+        create("Introduction to the Play Framework", ConferenceSession.Type.SESSION);
+        create("Object Oriented Design in the Wild", ConferenceSession.Type.ALL_DAY_TUTORIAL);
     }
 
 
     // //////////////////////////////////////
 
-    private ConferenceSession create(final String name) {
-        ConferenceSession session = conferenceSessions.create(name);
+    private ConferenceSession create(final String name, final ConferenceSession.Type type) {
+        ConferenceSession session = conferenceSessions.create(name, type);
         session.setDate(clockService.now().plusDays((int)(Math.random()*5)));
         return session;
     }

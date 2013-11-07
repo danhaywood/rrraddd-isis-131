@@ -23,9 +23,11 @@ import javax.jdo.annotations.VersionStrategy;
 
 import org.apache.isis.applib.DomainObjectContainer;
 import org.apache.isis.applib.annotation.Bookmarkable;
+import org.apache.isis.applib.annotation.Hidden;
 import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.ObjectType;
 import org.apache.isis.applib.annotation.Title;
+import org.apache.isis.applib.annotation.Where;
 import org.apache.isis.applib.util.ObjectContracts;
 import org.joda.time.LocalDate;
 
@@ -77,6 +79,28 @@ public class ConferenceSession implements Comparable<ConferenceSession> {
 
     
     // //////////////////////////////////////
+    // Type (property)
+    // //////////////////////////////////////
+
+    public enum Type {
+        KEYNOTE, ALL_DAY_TUTORIAL, SESSION, OTHER
+    }
+
+    private Type Type;
+
+    @javax.jdo.annotations.Column(allowsNull = "false")
+    @MemberOrder(sequence = "1")
+    public Type getType() {
+        return Type;
+    }
+
+    public void setType(final Type Type) {
+        this.Type = Type;
+    }
+
+    
+    
+     // //////////////////////////////////////
     // compareTo
     // //////////////////////////////////////
 
