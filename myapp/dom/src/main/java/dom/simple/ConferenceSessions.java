@@ -26,6 +26,7 @@ import org.apache.isis.applib.annotation.ActionSemantics.Of;
 import org.apache.isis.applib.annotation.Bookmarkable;
 import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.Named;
+import org.apache.isis.applib.annotation.Prototype;
 
 public class ConferenceSessions extends AbstractFactoryAndRepository {
 
@@ -69,4 +70,18 @@ public class ConferenceSessions extends AbstractFactoryAndRepository {
         persistIfNotAlready(obj);
         return obj;
     }
+
+
+    // //////////////////////////////////////
+    // Prototype actions
+    // //////////////////////////////////////
+
+
+    @Bookmarkable
+    @Prototype
+    @ActionSemantics(Of.SAFE)
+    public ConferenceSession firstOne() {
+        return listAll().get(0);
+    }
+
 }

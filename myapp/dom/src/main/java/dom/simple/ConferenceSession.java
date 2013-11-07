@@ -31,6 +31,7 @@ import org.apache.isis.applib.annotation.ObjectType;
 import org.apache.isis.applib.annotation.Title;
 import org.apache.isis.applib.annotation.Where;
 import org.apache.isis.applib.util.ObjectContracts;
+import org.apache.isis.applib.util.TitleBuffer;
 import org.joda.time.LocalDate;
 
 @javax.jdo.annotations.PersistenceCapable(identityType=IdentityType.DATASTORE)
@@ -44,6 +45,20 @@ import org.joda.time.LocalDate;
 @Bookmarkable
 public class ConferenceSession implements Comparable<ConferenceSession> {
 
+    public String title() {
+        final TitleBuffer buf = new TitleBuffer();
+        if(getSessionTitle().length()>20) {
+            buf.append(getSessionTitle().substring(0, 20)).append("...");
+        } else {
+            buf.append(getSessionTitle());
+        }
+        if(getSpeaker() != null) {
+            buf.append("(").append(container.titleOf(getSpeaker())).append(")");
+        }
+        return buf.toString();
+    }
+
+    
     // //////////////////////////////////////
     // sessionTitle (property)
     // //////////////////////////////////////
@@ -51,7 +66,6 @@ public class ConferenceSession implements Comparable<ConferenceSession> {
     private String sessionTitle;
 
     @javax.jdo.annotations.Column(allowsNull="false")
-    @Title
     @MemberOrder(sequence="1")
     public String getSessionTitle() {
         return sessionTitle;
