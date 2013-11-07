@@ -3,5 +3,6 @@
 .project
 target/
 target-ide/
-myapp-save/
+myapp-init/
+myapp-final/
 README-final.md
