@@ -101,6 +101,21 @@ public class ConferenceSession implements Comparable<ConferenceSession> {
     }
 
     
+    // //////////////////////////////////////
+    // speaker (property)
+    // //////////////////////////////////////
+
+    private Speaker speaker;
+
+    @javax.jdo.annotations.Column(allowsNull="true")
+    @MemberOrder(sequence = "3")
+    public Speaker getSpeaker() {
+        return speaker;
+    }
+
+    public void setSpeaker(final Speaker speaker) {
+        this.speaker = speaker;
+    }
     
      // //////////////////////////////////////
     // compareTo
