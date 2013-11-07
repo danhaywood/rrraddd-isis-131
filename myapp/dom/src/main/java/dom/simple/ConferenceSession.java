@@ -18,6 +18,7 @@
  */
 package dom.simple;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.SortedSet;
 import java.util.TreeSet;
@@ -36,6 +37,8 @@ import org.apache.isis.applib.annotation.Where;
 import org.apache.isis.applib.util.ObjectContracts;
 import org.apache.isis.applib.util.TitleBuffer;
 import org.joda.time.LocalDate;
+
+import com.google.common.collect.Lists;
 
 @javax.jdo.annotations.PersistenceCapable(identityType=IdentityType.DATASTORE)
 @javax.jdo.annotations.DatastoreIdentity(
@@ -171,7 +174,12 @@ public class ConferenceSession implements Comparable<ConferenceSession> {
         return this;
     }
 
-    
+    public Collection<Tag> choices0AddTag() {
+        List<Tag> tags = Lists.newArrayList(tagRepo.listAll());
+        tags.removeAll(getTags());
+        return tags;
+    }
+
     // //////////////////////////////////////
     // removeTag (action)
     // //////////////////////////////////////
@@ -182,6 +190,9 @@ public class ConferenceSession implements Comparable<ConferenceSession> {
         return this;
     }
 
+    public Collection<Tag> choices0RemoveTag() {
+        return getTags();
+    }
     
     // //////////////////////////////////////
     // compareTo
@@ -207,6 +218,12 @@ public class ConferenceSession implements Comparable<ConferenceSession> {
     
     public final void injectSpeakers(final Speakers speakers) {
         this.speakers = speakers;
+    }
+
+    private Tags tagRepo;
+    
+    public final void injectTags(final Tags tags) {
+        this.tagRepo = tags;
     }
 
 }
