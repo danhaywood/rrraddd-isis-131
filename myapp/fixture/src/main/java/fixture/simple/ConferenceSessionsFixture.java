@@ -25,6 +25,8 @@ import org.apache.isis.objectstore.jdo.applib.service.support.IsisJdoSupport;
 import services.ClockService;
 import dom.simple.ConferenceSession;
 import dom.simple.ConferenceSessions;
+import dom.simple.Speaker;
+import dom.simple.Speakers;
 
 public class ConferenceSessionsFixture extends AbstractFixture {
 
@@ -33,6 +35,7 @@ public class ConferenceSessionsFixture extends AbstractFixture {
     public void install() {
 
         isisJdoSupport.executeUpdate("delete from \"ConferenceSession\"");
+        isisJdoSupport.executeUpdate("delete from \"Speaker\"");
 
         installObjects();
         
@@ -40,6 +43,13 @@ public class ConferenceSessionsFixture extends AbstractFixture {
     }
 
     private void installObjects() {
+        createSpeaker("Dan", "Haywood");
+        createSpeaker("Misko", "Hevery");
+        createSpeaker("Cyrille", "Martraire");
+        createSpeaker("Svetlana", "Haywood");
+        createSpeaker("James", "Ward");
+        createSpeaker("Jessica", "Kerr");
+
         create("RRRADDD! Apache Isis", ConferenceSession.Type.SESSION);
         create("Best practices for AngularJS", ConferenceSession.Type.SESSION);
         create("Refactor your specs!", ConferenceSession.Type.SESSION);
@@ -57,6 +67,9 @@ public class ConferenceSessionsFixture extends AbstractFixture {
         return session;
     }
 
+    private Speaker createSpeaker(final String givenName, final String familyName) {
+        return speakers.create(givenName, familyName);
+    }
 
     // //////////////////////////////////////
 
@@ -78,6 +91,11 @@ public class ConferenceSessionsFixture extends AbstractFixture {
 
     public final void injectClockService(final ClockService clockService) {
         this.clockService = clockService;
+    }
+
+    private Speakers speakers;
+    public final void injectSpeakers(final Speakers speakers) {
+        this.speakers = speakers;
     }
 
 }
