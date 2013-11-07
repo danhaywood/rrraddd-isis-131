@@ -1,8 +1,16 @@
-rrraddd-isis-131
+RRRADDD! Ridiculously Rapid Domain-Driven (and RESTful) Apps with Apache Isis
 ================
 
 For RRRADDD! conference session demo, against Isis v1.3.1.
 
+*   [Slides (pptx)](https://github.com/danhaywood/rrraddd-isis-131/raw/master/pptx/RRRADDD.pptx)
+
+See also:
+
+*   [isis.apache.org](http://isis.apache.org)
+*   [restfulobjects.org](http://restfulobjects.org)
+*   [github.com/NakedObjectsGroup/spiro/wiki/Introduction-to-Spiro](http://github.com/NakedObjectsGroup/spiro/wiki/Introduction-to-Spiro)
+*   [danhaywood.com](http://danhaywood.com)
 
 ##Run the archetype
 
