@@ -69,7 +69,7 @@ mvn jetty:run
     * Shortcuts
 * Resources
     * [http://isis.apache.org/getting-started/screencasts.html](http://isis.apache.org/getting-started/screencasts.html)
-    * [http://isis.apache.org/components/objectstores/jdo/datanucleus-and-eclipse.html](http://isis.apache.org/getting-started/screencasts.html)
+    * [http://isis.apache.org/components/objectstores/jdo/datanucleus-and-eclipse.html](http://isis.apache.org/components/objectstores/jdo/datanucleus-and-eclipse.html)
 
 
 ####DEMO (run)
